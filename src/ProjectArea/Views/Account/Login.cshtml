@@ -1,0 +1,30 @@
+﻿@model LoginViewModel
+
+
+<form method="post" asp-antiforgery="true">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="form-group">
+        <input asp-for="UserName" type="text" class="form-control" placeholder="Login*">
+        <span asp-validation-for="UserName"></span>
+    </div>
+    <div class="form-group">
+        <input asp-for="Password" type="password" class="form-control" placeholder="Haslo*">
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div class="clearfix">
+        <div class="pull-right text-right">
+            <input type="submit" value="Login">
+            <div>
+                <a href="#">Lost Password?</a>
+            </div>
+        </div>
+        <div class="pull-left">
+
+            <div>
+                <input asp-for="RememberMe" type="checkbox" name="remember" id="remember">
+                <span asp-validation-for="RememberMe"></span>
+                <label for="remember">Remember Me</label>
+            </div>
+        </div>
+    </div>
+</form>
