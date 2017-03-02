@@ -9,5 +9,7 @@ namespace ProjectArea.Entities
         {
 
         }
+
+        public DbSet<Project> Projects { get; set; }
     }
 }

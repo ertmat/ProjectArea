@@ -47,6 +47,8 @@ namespace ProjectArea
 
             services.AddScoped<IUserManagerData, SqlUserData>();
 
+            services.AddScoped<IProjectManagerData, SqlProjectData>();
+
             services.AddDbContext<ProjectDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProjectArea")));
 
             services.AddIdentity<User, IdentityRole>()
