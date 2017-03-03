@@ -36,8 +36,8 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li><a asp-controller="Home" asp-action="AddProject">AddProject</a></li>
-                        <li><a asp-controller="Home" asp-action="YourProjects">Your Projects</a></li>
+                        <li><a asp-controller="Project" asp-action="AddProject">AddProject</a></li>
+                        <li><a asp-controller="Project" asp-action="YourProjects">Your Projects</a></li>
                         <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
                     }
                     else

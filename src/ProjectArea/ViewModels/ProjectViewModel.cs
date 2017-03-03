@@ -11,5 +11,6 @@ namespace ProjectArea.ViewModels
         public string Description { get; set; }
 
         public IEnumerable<Project> Projects { get; set; }
+        public IEnumerable<Member> Members { get; set; }
     }
 }

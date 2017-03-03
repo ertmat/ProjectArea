@@ -6,7 +6,7 @@
         <div>
             @foreach (var project in Model.Projects)
             {
-                <a asp-controller="Home" asp-action="Project" asp-route-id="@project.Id">
+                <a asp-controller="Project" asp-action="Project" asp-route-id="@project.Id">
                     <div class="col-md-6">
                         @project.Name
                     </div>

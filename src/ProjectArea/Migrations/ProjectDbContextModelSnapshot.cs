@@ -123,6 +123,40 @@ namespace ProjectArea.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ProjectArea.Entities.Member", b =>
+                {
+                    b.Property<string>("MemberId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("JoinDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("ProjectId");
+
+                    b.Property<int>("Role");
+
+                    b.HasKey("MemberId");
+
+                    b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("ProjectArea.Entities.Project", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("OwnerId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Projects");
+                });
+
             modelBuilder.Entity("ProjectArea.Entities.User", b =>
                 {
                     b.Property<string>("Id")

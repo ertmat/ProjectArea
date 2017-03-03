@@ -10,6 +10,8 @@ namespace ProjectArea.Services
         Project Get(int id);
         IEnumerable<Project> GetAll();
         IEnumerable<Project> GetForUser(string userId);
+        IEnumerable<Member> GetAllMembers(int id);
+        Member AddMember(Member newMember);
         void Commit();
     }
 
@@ -41,6 +43,17 @@ namespace ProjectArea.Services
         public IEnumerable<Project> GetForUser(string userId)
         {
             return _context.Projects.Where(i => i.OwnerId == userId);
+        }
+
+        public Member AddMember(Member newMember)
+        {
+            _context.Members.Add(newMember);
+            return newMember;
+        }
+
+        public IEnumerable<Member> GetAllMembers(int id)
+        {
+            return _context.Members.Where(i => i.ProjectId == id);
         }
 
         public void Commit()
