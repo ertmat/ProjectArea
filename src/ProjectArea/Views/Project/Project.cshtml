@@ -10,6 +10,7 @@
                 <p>@Model.Description</p>
             </div>
             <div>
+                @if()
                 <a asp-controller="Project" asp-action="Join" asp-route-id="@Model.Id" class="btn btn-default">Join</a>
             </div>
         </div>

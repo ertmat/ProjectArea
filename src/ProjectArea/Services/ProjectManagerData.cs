@@ -53,7 +53,9 @@ namespace ProjectArea.Services
 
         public IEnumerable<Member> GetAllMembers(int id)
         {
-            return _context.Members.Where(i => i.ProjectId == id);
+            return _context.Members
+                .Where(i => i.ProjectId == id)
+                .Where(r => r.Role >= 1);
         }
 
         public void Commit()

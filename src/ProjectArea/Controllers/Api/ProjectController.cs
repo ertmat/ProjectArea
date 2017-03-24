@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectArea.Entities;
 using ProjectArea.Services;
 using ProjectArea.ViewModels;
-using ProjectArea.Entities;
 using System;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace ProjectArea.Controllers
+namespace ProjectArea.Controllers.Api
 {
+    [Route("Project/api")]
     public class ProjectController : Controller
     {
         private IUserManagerData _userManager;
@@ -19,13 +18,7 @@ namespace ProjectArea.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet]
-        public IActionResult AddProject()
-        {
-            return View();
-        }
-
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost("addproject")]
         public IActionResult AddProject(ProjectViewModel model)
         {
             var project = new Project();
@@ -39,9 +32,11 @@ namespace ProjectArea.Controllers
             _projectManager.Add(project);
             _projectManager.Commit();
 
-            return RedirectToAction("Project", new { id = project.Id });
+            var results = project;
+            return Ok(results);
         }
 
+        [HttpGet("project/{id}")]
         public IActionResult Project(int id)
         {
             var model = new ProjectViewModel();
@@ -52,17 +47,19 @@ namespace ProjectArea.Controllers
             model.Id = id;
             model.Members = _projectManager.GetAllMembers(id);
 
-            return View(model);
+            return Ok(model);
         }
 
+        [HttpGet("projects")]
         public IActionResult YourProjects(ProjectViewModel model)
         {
             var userId = _userManager.GetLoggedUserId();
             model.Projects = _projectManager.GetForUser(userId);
 
-            return View(model);
+            return Ok(model);
         }
 
+        [HttpPost("join")]
         public IActionResult Join(ProjectViewModel model, int id)
         {
             var member = new Member();
@@ -79,7 +76,7 @@ namespace ProjectArea.Controllers
             _projectManager.AddMember(member);
             _projectManager.Commit();
 
-            return RedirectToAction("Project", new { id = member.ProjectId });
+            return Ok();
         }
     }
 }
